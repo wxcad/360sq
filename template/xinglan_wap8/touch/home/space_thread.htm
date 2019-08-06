@@ -1,0 +1,104 @@
+<!--{template common/header}-->
+
+
+
+<!-- header start -->
+
+<!--{template common/header_xinglan}-->
+
+<!-- header end -->
+
+
+<!--{hook/index_top_mobile}-->
+
+<div class="wi_pt">
+
+	<div class="block_search"><a href="home.php?mod=space&uid=$_G[uid]&do=profile&mycenter=1" class="comback">我的</a></div>
+	
+	<div class="block_logo"><a href="home.php?mod=space&uid={$_G[uid]}">{$space[username]} {echo langm('de')}<!--{if $viewtype == 'reply'}-->{echo langm('reply')}<!--{else}-->{echo langm('thread')}<!--{/if}--></a></div>
+
+</div>
+
+
+<div class="min_thread">
+	<ul>
+		<li><a href="{if CURMODULE != 'follow'}home.php?mod=space&uid={$_G[uid]}&do=thread&view=me&type=thread&from=space{else}home.php?mod=space&uid={$_G[uid]}&view=thread{/if}"{if $viewtype != 'reply'} class="a"{/if}>{echo langm('thread')}</a></li>
+		<li><a href="{if CURMODULE != 'follow'}home.php?mod=space&uid={$_G[uid]}&do=thread&view=me&type=reply&from=space{else}home.php?mod=space&uid={$_G[uid]}&view=thread&type=reply{/if}"{if $viewtype == 'reply'} class="a"{/if}>{echo langm('reply')}</a></li>
+	</ul>
+</div>
+
+
+<!-- main threadlist start -->
+
+<div class="threadlist ucen_list">
+
+	<ul>
+
+	<!--{if $list}-->
+
+		<!--{loop $list $thread}-->
+
+			<li>
+
+
+			<!--{if $viewtype == 'reply' || $viewtype == 'postcomment'}-->
+
+			<a href="forum.php?mod=redirect&goto=findpost&ptid=$thread[tid]&pid=$thread[pid]" target="_blank">
+
+			<!--{else}-->
+
+			<a href="forum.php?mod=viewthread&tid=$thread[tid]" target="_blank" {if $thread['displayorder'] == -1}class="grey"{/if}>
+
+			<!--{/if}-->
+
+
+			<!--{if in_array($thread['displayorder'], array(1, 2, 3, 4))}-->
+
+				<img src="{$xinglan}/image/ico_top.gif" class="vm" />
+
+			<!--{elseif $thread['attachment'] == 2}-->
+
+				<img src="{$xinglan}/image/ico_img.gif" class="vm" />
+
+			<!--{/if}-->
+
+			$thread[subject]</a>
+
+
+            <!--{if $viewtype != 'postcomment'}-->
+
+                <p class="ptm xg1">
+
+                <!--{if !$actives[me]}-->
+
+                	<a href="home.php?mod=space&uid=$thread[authorid]">$thread[author]</a> - $thread[dateline]
+
+                <!--{/if}-->     	
+
+                	回复：$thread[replies] &nbsp;&nbsp;查看：$thread[views]
+
+                </p>
+
+            <!--{/if}-->
+
+			</li>
+
+		<!--{/loop}-->
+
+	<!--{else}-->
+
+		<li>{lang no_related_posts}</li>
+
+	<!--{/if}-->
+
+	</ul>
+
+	$multi
+
+</div>
+
+<!-- main threadlist end -->
+
+
+<!--{template common/footer}-->
+

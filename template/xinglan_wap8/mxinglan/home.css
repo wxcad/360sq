@@ -1,0 +1,115 @@
+.userinfo,.userexp{	font-size:13px;}
+
+.userinfo a,.userexp a{ color:#f60;}
+
+.userexp { border-top:1px solid #e5e5e5;}
+
+.tops { height:92px; background:#fff; font-size:15px; padding:15px 15px 15px 30px; border-bottom:1px solid #E9E9E9; margin-bottom:13px;}
+
+.avatar_m { width:90px; height:90px; background:#fff; -webkit-border-radius:50%; -moz-border-radius:50%; -o-border-radius:50%; border-radius:50%; overflow:hidden; float:left; margin-right:18px;}
+
+.avatar_m img { width:90px; height:90px;}
+
+.my_username{ font-size:18px; color:#474747;}
+.tjxinx{ float:left; font-size:14px; color:#858585; padding:0px 5px 0px;}
+
+.qiandao{ background:#fff; border-bottom:1px solid #E9E9E9; border-top:1px solid #E9E9E9; margin-bottom:13px;}
+.qiandao a{ display:block; padding:13px 25px; font-size:18px; color:#474747;}
+.qiandao a i.qdao{ display:inline-block; width:36px; height:36px; background:url(./image/mcenter.png) no-repeat; vertical-align:middle; margin-right:14px;}
+i.ucenter_go{ display:inline-block; width:13px; height:22px; background:url(./image/damei.png) -110px 0px no-repeat; vertical-align:middle; margin-left:15px; float:right; margin-top:7px; background-size:140px auto;}
+
+.user_box li { padding:10px; min-height:18px; overflow:hidden; border-top:1px solid #EEEEEE; background:#fff;}
+.ucenter_my li{ background:#fff; padding:0px;}
+.ucenter_my li a{ display:block; padding:10px 20px; font-size:18px; color:#474747;}
+.ucenter_my li.tit_profile{ border-bottom:1px solid #EEEEEE;}
+.ucenter_my li.tit_logout{ margin:13px 0px; border-bottom:1px solid #EEEEEE;}
+.ucenter_my li i.cen_icon{ display:inline-block; width:35px; height:35px; background:url(./image/mcenter.png) no-repeat; vertical-align:middle; margin-right:14px;}
+.ucenter_my li i.zti{ background-position:0 -36px;}
+.ucenter_my li i.scang{ background-position:0 -71px;}
+.ucenter_my li i.xxi{ background-position:0 -141px;}
+.ucenter_my li i.zliao{ background-position:0 -106px;}
+.ucenter_my li i.lout{ background-position:0 -176px;}
+
+
+.basic { font-size:16px; font-weight:bold;}
+
+.user_box .z { width: 40%; float: left; }
+
+.user_box .y { width: 60%; float: left; }
+
+.user_box p { height: 20px; }
+
+.bm .loca .y .fanhui.y.pm { padding: 5px; margin-right: 5px; }
+
+.pmbox li { padding: 12px 10px; border-top: 1px solid #fff; min-height: 28px; border-bottom: 1px solid #e5e5e5; }
+
+.avatar_img { float: left; width: 40px; border-radius: 5px; }
+
+.avatar_img img { border-radius: 5px; height: 32px; width: 32px; border: 2px solid #777; }
+
+.pmbox .cl .num, .list .num { float: right; background-color: #666; border: 1px solid #FFF; color: #FFF; border-radius: 10px; min-width: 20px; text-align: center; -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15); -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15); -o-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15); padding-top: 1px; padding-right: 2px; padding-bottom: 1px; padding-left: 2px; }
+
+.pmbox .cl { overflow: hidden; height: 22px; }
+
+.grey { overflow: hidden; }
+
+.grey .time { float: right; color: #ADADAD; }
+
+.msgbox { overflow: hidden; }
+
+.msgbox .cl { position: relative; width: 200px; height: auto; margin-top: 5px; margin-right: 5px; margin-bottom: 20px; margin-left: 5px; }
+
+.msgbox .cl .c { position: relative; z-index: 120; overflow: hidden; background-color: #E0E0E0; border-radius: 10px; padding: 8px; height: auto; }
+
+.msgbox .avat { border-radius: 5px; height: 32px; width: 32px; border: 2px solid #777; }
+
+.msgbox .m:after { content: ''; position: absolute; width: 0; height: 0; border: 20px solid; border-color: #E0E0E0; margin-top: -35px; z-index: 100; }
+
+.friend_msg { float: left; }
+
+.self_msg { float: right; }
+
+.friend_msg .avat { float: left; margin-right: 5px; }
+
+.self_msg .avat { float: right; margin-left: 5px; }
+
+.friend_msg .m:after { -webkit-transform: rotate(-30deg); -moz-transform: rotate(-30deg); -o-transform: rotate(-30deg); -ms-transform: rotate(-30deg); transform: rotate(-30deg); left: 10px; }
+
+.self_msg .m:after { -webkit-transform: rotate(-60deg); -moz-transform: rotate(-60deg); -o-transform: rotate(-60deg); -ms-transform: rotate(-60deg); transform: rotate(-60deg); right: 10px; }
+
+.page { }
+
+.msgbox .page a { float: left; margin: 3px; padding-top: 2px; padding-right: 4px; padding-bottom: 2px; padding-left: 4px; text-align: center; border: 1px solid #666; background-color: #CCC; }
+
+.reply.b_m { text-align: center; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; }
+
+.post_msg_from { padding: 10px; }
+
+.nmsg { text-align: center; }
+
+#friend_ul { }
+
+.list { padding: 10px; }
+
+.mbb { height: 20px; }
+
+.text a { color: #808080; }
+
+.feed { overflow: hidden; padding-right: 10px; padding-left: 10px; }
+
+.hx2 { padding: 10px 7px; }
+
+.sublist { padding-left: 44px; position: relative; }
+
+.sublist li { padding: 10px 7px 10px 3px; border-top: 1px #e5e5e5 dashed; color: #666; }
+
+.sublist li .xg1 { color: #999; }
+
+.add_doing { background-color: #E2E5DE; padding: 10px; }
+
+.add_doing textarea { width: 100%; height: 50px; padding: 5px; color: #666; border: none; background: none; }
+
+.ss { background: #fcfcfc; border-radius: 5px; }
+
+.add_doing button { width: 52px; height: 60px; line-height: 60px; font-size: 17px; color: #F0F0F0; background: #e0e0e0; border: none; border-radius: 0 5px 5px 0; }
+

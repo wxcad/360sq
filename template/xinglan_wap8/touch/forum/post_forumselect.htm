@@ -1,0 +1,28 @@
+<!--{template common/header}-->
+<!-- header start -->
+<div class="wi_pt">
+
+	
+	
+	<div class="block_search"><a href="javascript:history.back();" class="comback">{lang back}</a></div>
+
+    <div class="block_logo">
+	<!--{if $_G['forum']['type'] == 'forum'}--> 
+		<a href="forum.php?mod=forumdisplay&fid={$_G['forum']['fid']}">{echo cutstr(strip_tags($_G['forum']['name']),20)}</a> 
+	<!--{else}--> 
+		{echo cutstr(strip_tags($_G['forum']['name']),16)} <h1>选择您要发帖的板块</h1>
+	<!--{/if}--> 
+	</div>
+
+</div>
+<header class="header">
+	<a href="forum.php?forumlist=1" class="goBack fl">返回</a>
+	
+</header>
+<!-- header end -->
+
+<div class="quan_cat cl">
+<!--{block/947}-->
+</div>
+
+<!--{template common/footer}-->

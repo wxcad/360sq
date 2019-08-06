@@ -1,0 +1,161 @@
+<!--{template common/header}-->
+
+<!-- header start -->
+<!--{template common/header_xinglan}-->
+<!-- header end -->
+
+<!--{hook/forumdisplay_top_mobile}-->
+<div class="wi_pt">
+
+	<div class="block_user"><h2><a href="forum.php?mod=post&action=newthread&fid=$_G[fid]" title="{lang send_threads}" class="f_post">{lang send_threads}</a></h2></div>
+	
+	<div class="block_search"><a href="javascript:history.back();" class="comback">{lang back}</a></div>
+
+    <div class="block_logo">
+	<!--{if $_G['forum']['type'] == 'forum'}--> 
+		<a href="forum.php?mod=forumdisplay&fid={$_G['forum']['fid']}">{echo cutstr(strip_tags($_G['forum']['name']),20)}</a> 
+	<!--{else}--> 
+		{echo cutstr(strip_tags($_G['forum']['name']),16)} 
+	<!--{/if}--> 
+	</div>
+
+</div>
+
+<!--{if $subexists}-->
+<div class="wi_fcat cl">	
+	
+	<a href="javascript:;" onclick="showmenu('subfrm');" class="wisub">{lang forum_subforums}：</a>
+	
+	<ul class="pcat">
+		 <!--{loop $sublist $sub}-->
+		<li>
+						
+			<a href="forum.php?mod=forumdisplay&fid={$sub['fid']}" class="a">
+			<p class="f_n">{$sub[name]}</p>
+								
+			</a>
+		</li>
+		<!--{/loop}-->
+	</ul>
+
+</div>
+<!--{/if}-->
+
+
+<!--{if !$_G[setting][mobile][mobilesimpletype] && ($_G['forum']['threadtypes'] && $_G['forum']['threadtypes']['listable']) || $_G['forum']['threadsorts']}-->
+<div id="modmenu_menu" class="modmenu_cat cl">
+
+<!--{if $_G['forum']['threadtypes']}--> 
+	<a href="forum.php?mod=forumdisplay&fid=$_G[fid]{if $_GET['archiveid']}&archiveid={$_GET['archiveid']}{/if}" class="<!--{if $_GET['filter'] != 'typeid'}-->a<!--{/if}-->">{lang forum_viewall}</a> 
+	<!--{loop $_G['forum']['threadtypes']['types'] $id $name}--> 
+		<a href="forum.php?mod=forumdisplay&fid=$_G[fid]&filter=typeid&typeid=$id$forumdisplayadd[typeid]" {if $_GET['filter'] == 'typeid' && $_GET['typeid'] == $id} class="a"{/if}>$name</a> 
+	<!--{/loop}--> 
+<!--{/if}-->
+<!--{if $_G['forum']['threadsorts']}--> 
+	<!--{loop $_G['forum']['threadsorts']['types'] $id $name}--> 
+		<a href="forum.php?mod=forumdisplay&fid=$_G[fid]&filter=sortid&sortid=$id$forumdisplayadd[sortid]" class="<!--{if $_GET[sortid] == $id}-->a<!--{/if}-->">$name</a> 
+	<!--{/loop}--> 
+<!--{/if}--> 
+	
+</div>
+
+<!--{/if}--> 
+
+<!--{if $quicksearchlist && !$_GET['archiveid']}-->
+	<!--{subtemplate forum/search_sortoption}-->
+<!--{/if}-->
+
+
+<!-- main threadlist start -->
+<!--{if !$subforumonly}-->
+
+	<!--{if empty($_G['forum']['picstyle']) || $_G['cookie']['forumdefstyle']}-->
+		<div class="threadlist">
+				
+				<!--{if $_G['forum_threadcount']}-->
+					<!--{loop $_G['forum_threadlist'] $key $thread}-->
+						<!--{if !$_G['setting']['mobile']['mobiledisplayorder3'] && $thread['displayorder'] > 0}-->
+							{eval continue;}
+						<!--{/if}-->
+						<!--{if $thread['displayorder'] > 0 && !$displayorder_thread}-->
+							{eval $displayorder_thread = 1;}
+						<!--{/if}-->
+						<!--{if $thread['moved']}-->
+							<!--{eval $thread[tid]=$thread[closed];}-->
+						<!--{/if}-->
+					    <dl class="neirlist">
+						<!--{hook/forumdisplay_thread_mobile $key}-->
+						<a href="forum.php?mod=viewthread&tid=$thread[tid]&extra=$extra" $thread[highlight] >
+
+						
+							
+							<dd class="toux"><img src="uc_server/avatar.php?uid=$thread[authorid]&amp;size=middle" width="55" height="55"></dd>
+	                        <dt class="title">{$thread[subject]}</dt>
+                                             
+                        <dd class="xinx">
+							<span class="ftime"><i></i>{$thread[dateline]}</span>
+							<span class="chak"><i></i><!--{if $thread[views] > 0}-->{$thread[views]}<!--{else}-->0<!--{/if}--></span>
+							<span class="huifu"><i></i><!--{if $thread[replies] > 0}-->{$thread[replies]}<!--{else}-->0<!--{/if}--></span>
+						</dd>
+
+							
+						
+						
+						</a>
+                        </dl>
+						
+					<!--{/loop}-->
+				<!--{else}-->
+				<li><p class="hm b_p">{lang forum_nothreads}</p></li>
+				<!--{/if}-->
+			</ul>
+		</div>
+		<!--{else}-->
+			
+			<div class="threadlist_pic wi_col_{$pic_col}">	
+				<ul class="image-list">
+	            {eval $i=1;}
+				<!--{loop $_G['forum_threadlist'] $key $thread}-->   
+					<li class="image-list-item">
+						<div class="image-wrap">
+							<a href="forum.php?mod=viewthread&tid=$thread[tid]" >
+								<!--{if $thread['cover']}--><em>{$thread[cover]}+</em><!--{/if}-->  
+					            <!--{if $thread['cover']}-->
+								<img src="$thread[coverpath]" />
+								<!--{else}-->
+					            <img src="{$xinglan}/img/nopic.jpg" class="fpnopic" />
+								<!--{/if}-->  
+							</a>
+						</div>
+						<div class="image-title">
+							<a href="forum.php?mod=viewthread&tid=$thread[tid]">$thread[subject]</a>
+						</div>
+						<p class="total-bar">
+			                <!--{if $thread['authorid'] && $thread['author']}-->
+			                	{$thread[author]}
+			                <!--{else}-->
+			                	<!--{if $_G['forum']['ismoderator']}-->{lang anonymous}<!--{else}-->{$_G[setting][anonymoustext]}<!--{/if}-->
+			                <!--{/if}-->
+			                <span class="pipe">-</span><em class="dline">{$thread[dateline]}</em>
+
+			                <span class="y">
+			                <a href="javascript:void(0);" class="fav-num"><!--{if $thread[views] > 0}-->{$thread[views]}<!--{else}-->0<!--{/if}--></a>
+							<a href="javascript:void(0);" class="cmt-num"><!--{if $thread[replies] > 0}-->{$thread[replies]}<!--{else}-->0<!--{/if}--></a>
+		    				</span>	
+						</p>
+					</li>  
+                	{eval $i++;}
+				<!--{/loop}-->					
+				</ul>
+				
+			</div>
+		<!--{/if}-->
+
+		$multipage
+
+<!--{/if}-->
+<!-- main threadlist end -->
+<!--{hook/forumdisplay_bottom_mobile}-->
+<div class="pullrefresh" style="display:none;"></div>
+
+<!--{template common/footer}-->

@@ -1,0 +1,122 @@
+<div class="ct">
+<link rel="stylesheet" href="template/xinglan_wap8/mxinglan/portal.css" type="text/css" />
+<div class="wi_nav">
+	<ul>    <li><a href="portal.php?mod=list&catid=1">文章资讯</a></li>
+		<li><a href="forum.php?mod=forumdisplay&fid=67&mobile=2">分类信息</a></li>
+                <li><a href="forum.php?mod=forumdisplay&fid=63&mobile=2">图文天下</a></li>
+		<li><a href="forum.php?mod=forumdisplay&fid=2&mobile=2">自然风光</a></li>
+		<li><a href="forum.php?mod=forumdisplay&fid=38&mobile=2">旅游</a></li>
+		<li><a href="forum.php?mod=forumdisplay&fid=59&mobile=2">可自定义</a></li>
+
+                
+	</ul>
+</div>
+
+
+
+
+<!--//幻灯片-->
+
+<!--{block/943}-->
+		
+
+	</div>
+
+
+<!--swipe end-->
+<!--scroller end-->
+		</div>
+
+
+	
+
+<!--//版块这里放-->
+<!--{block/944}-->
+
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+
+
+
+
+
+<script type="text/javascript">
+var active=0,
+	as=document.getElementById('pagenavi').getElementsByTagName('a');
+	
+for(var i=0;i<as.length;i++){
+	(function(){
+		var j=i;
+		as[i].onclick=function(){
+			t2.slide(j);
+			return false;
+		}
+	})();
+}
+
+var t1=new TouchScroll({id:'wrapper','width':5,'opacity':0.7,color:'#555',minLength:20});
+
+var t2=new TouchSlider({id:'slider', speed:600, timeout:6000, before:function(index){
+		as[active].className='';
+		active=index;
+		as[active].className='active';
+	}});
+</script>
+
+
+
+
+<div class="wi_a">
+   <div id="left_2">
+<div> 
+<div class="nTab"> 
+
+<div> 
+<div class="mouse_on_1" id="myTab0_Content0">
+<dl>
+<dt><div class="block_list">
+<!--{block/945}-->
+</div></dt>
+</dl>
+</div> 
+<div id="myTab0_Content1" class="none mouse_on_1">
+<dl>
+<dt><div class="block_list">
+
+</div></dt>
+</dl>
+</div> 
+<div id="myTab0_Content2" class="none mouse_on_1">
+<dl>
+<dt><div class="block_list">
+
+</div></dt>
+</dl>
+</div> 
+<div id="myTab0_Content3" class="none mouse_on_1">
+<dl>
+<dt><div class="block_list">
+
+</div></dt>
+</dl>
+</div> 
+</div> 
+</div> 
+
+</div>
+</div>
+
+</div>
+
+<!--//图文精选-->
+<!--{block/946}-->
+
+<!--//首页幻灯片下资讯列表-->
+</div>

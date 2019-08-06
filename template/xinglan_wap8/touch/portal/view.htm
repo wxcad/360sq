@@ -1,0 +1,109 @@
+<!--{subtemplate common/header}-->
+
+<!-- header start -->
+<!--{template common/header_xinglan}-->
+<!-- header end -->
+
+<script type="text/javascript">
+function show(){
+var iWidth = document.documentElement.clientWidth;
+var iHeight = document.documentElement.clientHeight;
+var bgObj = document.createElement("div");
+bgObj.setAttribute("id","bgbox");
+bgObj.style.width = iWidth+"px";
+bgObj.style.height =Math.max(document.body.clientHeight, iHeight)+"px";
+document.body.appendChild(bgObj);
+var oShow = document.getElementById('show2');
+oShow.style.display = 'block';
+oShow.style.right = 0+"px";
+oShow.style.top = 0+"px";
+function oClose(){
+oShow.style.display = 'none';
+document.body.removeChild(bgObj);
+}
+bgObj.onclick = oClose;
+}
+</script>
+
+<div class="wi_pt">
+	
+	<ul class="block_user">
+		<li id="usermsg">
+		<a onclick="show(); return false" href="#" class="icon_userinfo"></a>
+		</li>
+	</ul>
+		
+	<div class="block_search"><a href="javascript:history.back();" class="comback">{lang back}</a></div>
+	
+    <div class="block_logo"><h2><a href="{echo getportalcategoryurl($cat[catid])}">$cat[catname]</a></h2></div>
+   
+</div>
+
+<!--{$nav_sub}-->	
+<div id="show2" class="wi_user cl" style="display:none;">
+	<!--{if $_G['uid']}-->
+	<div class="limn1"><img src="<!--{avatar($_G[uid], middle, true)}-->" /><a href="home.php?mod=space&uid={$_G[uid]}">$_G['username']</a></div>
+	<!--{else}-->
+	<div class="limn1"><img src="<!--{avatar(0, middle, true)}-->" />游客</div>
+	<!--{/if}-->
+	<div style="clear:both;"></div>
+	<ul>
+		    <li class="blli1"><a href="forum.php?mod=forum"><i></i>社区首页</a></li>
+			<li class="blli2"><a href="portal.php?mod=list&catid=1"><i></i>新闻资讯</a></li>
+			<li class="blli3"><a href="forum.php?mod=forumdisplay&fid=37"><i></i>美图天下</a></li>
+			<!--{if $_G['uid']}-->
+			<li class="blli4"><a onclick="showWindow('nav', this.href, 'get', 0)" href="forum.php?mod=misc&amp;action=nav"><i></i>发布主题</a></li>
+			<!--{else}-->
+			<li class="blli4"><a href="member.php?mod=logging&action=login"><i></i>发布主题</a></li>
+			<!--{/if}-->
+			<li class="blli5"><a href="<!--{if $_G[uid]}-->home.php?mod=space&uid=$_G[uid]&do=profile&mycenter=1<!--{else}-->member.php?mod=logging&action=login<!--{/if}-->" class="iocn4"><i></i>个人中心</a></li>
+			<!--{if $_G['uid']}-->
+			<li class="blli6" style="border-bottom:none;"><a href="member.php?mod=logging&action=logout&formhash={FORMHASH}"><i></i>{lang logout_mobile}</a></li>		
+			<!--{else}-->
+			<li class="blli6"><a href="member.php?mod=logging&action=login"><i></i>登录注册</a></li>
+			<!--{/if}-->
+		</ul>
+</div>
+
+
+<div id="index_content">
+    <h1 class="ic_h">$article[title] <!--{if $article['status'] == 1}--><span>({lang moderate_need})</span><!--{elseif $article['status'] == 2}--><span>({lang ignored})</span><!--{/if}--></h1>
+    <div class="user_first">                
+        
+        <a href="home.php?mod=space&uid=$article[uid]">作者：$article[username]</a>
+        <span class="yd">{lang view_views}：<em id="_viewnum"><!--{if $article[viewnum] > 0}-->$article[viewnum]<!--{else}-->0<!--{/if}--></em></span>
+		<!--{if $article[commentnum] > 0}--><a href="$common_url" title="{lang view_all_comments}">{lang view_comments}：<em id="_commentnum">$article[commentnum]</em></a><!--{else}-->{lang view_comments}：0<!--{/if}-->
+
+        <!--{if $_G['uid']}-->                    
+        <!--{if $_G['group']['allowmanagearticle'] || ($_G['group']['allowpostarticle'] && $article['uid'] == $_G['uid'] && (empty($_G['group']['allowpostarticlemod']) || $_G['group']['allowpostarticlemod'] && $article['status'] == 1)) || $categoryperm[$value['catid']]['allowmanage']}-->
+                
+            <!--{if $article[status]>0 && ($_G['group']['allowmanagearticle'] || $categoryperm[$value['catid']]['allowmanage'])}-->
+                <a href="portal.php?mod=portalcp&ac=article&op=verify&aid=$article[aid]&mobile=2" >({lang moderate})</a>
+            <!--{else}-->
+                <a href="portal.php?mod=portalcp&ac=article&op=delete&aid=$article[aid]&mobile=2" >({lang delete})</a>
+            <!--{/if}-->
+        <!--{/if}-->                  
+        <!--{/if}-->                    
+    </div>
+	
+	<!--{if $article[summary] && empty($cat[notshowarticlesummay])}--><div class="wsumr"><div><strong>文章摘要：</strong>$article[summary]</div><!--{hook/view_article_summary}--></div><!--{/if}-->
+	
+    <div class="mess">                                        
+    <!--{if $content[title]}-->$content[title]<!--{/if}-->  
+    <div>$content[content]</div>                
+    <!--{if $multi}--><div class="pgbox">$multi</div><!--{/if}-->             
+                                  
+    <!--{subtemplate home/space_click}-->            
+                                       
+    </div>        
+</div>
+
+
+
+<!--{if $article['allowcomment']==1}-->
+    <!--{eval $data = &$article}-->         
+    <div class="por_comm"><!--{subtemplate portal/portal_comment}--></div>
+<!--{/if}-->
+
+
+<!--{subtemplate common/footer}-->

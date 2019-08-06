@@ -1,0 +1,233 @@
+<!--{if $_GET['mycenter'] && !$_G['uid']}-->
+
+	<!--{eval dheader('Location:member.php?mod=logging&action=login');exit;}-->
+
+<!--{/if}-->
+
+<!--{template common/header}-->
+
+ 
+
+<link rel="stylesheet" type="text/css" href="{$xinglan}/home.css" />
+
+
+
+<!-- header start -->
+
+<!--{template common/header_xinglan}-->
+
+<!-- header end -->
+
+
+
+<!--{hook/index_top_mobile}-->
+
+
+
+
+
+<!--{if !$_GET['mycenter']}-->
+
+<div class="wi_pt">
+
+	<div class="block_search"><a href="javascript:;" onclick="history.go(-1);" class="comback">我的</a></div>
+	
+	<div class="block_logo"><a href="home.php?mod=space&uid={$_G[uid]}"><!--{if $_G['uid'] == $space['uid']}-->{lang myprofile}<!--{else}-->$space[username]{lang otherprofile}<!--{/if}--></a></div>
+
+</div>
+
+  <!-- userinfo start -->
+
+  <div class="userinfo">
+
+    
+
+    <div class="user_box">
+
+      <ul>
+
+        <li><span class="z">{lang username}:</span><span class="y">
+
+          <p>{$space[username]}</p>
+
+          <!--{if $space[uid] != $_G[uid]}-->
+
+          <p> <a href="home.php?mod=spacecp&ac=pm&touid={$space[uid]}" class="font">{lang send_pm}</a></p>
+
+          <!--{/if}-->
+
+          <p> 
+
+            <!--{if !$isfriend}--> 
+
+            <a href="home.php?mod=spacecp&ac=friend&op=add&uid=$space[uid]&handlekey=addfriendhk_{$space[uid]}" class="font">{lang add_friend}</a> 
+
+            <!--{else}--> 
+
+            <a href="home.php?mod=spacecp&ac=friend&op=ignore&uid=$space[uid]&handlekey=ignorefriendhk_{$space[uid]}" class="font">{lang ignore_friend}</a> 
+
+            <!--{/if}--> 
+
+          </p>
+
+          <!--{if $_G['group']['allowbanuser']}-->
+
+          <p> <a href="forum.php?mod=modcp&action=member&op=ban&uid={$space[uid]}" class="font">{lang ban_member}</a></p>
+
+          <!--{/if}--></span></li>
+
+        <li><span class="z">UID:</span><span class="y">{$space[uid]}</span></li>
+
+        <li><span class="z">{lang space_visits}:</span><span class="y"><strong class="font">$space[views]</strong></span></li>
+
+        <li><span class="z">Email:</span><span class="y">$space[email]</span></li>
+
+        
+
+        <li><span class="z">{lang stat_info}:</span><span class="y">
+
+        <p><a href="{if CURMODULE != 'follow'}home.php?mod=space&uid=$space[uid]&do=thread&view=me&type=thread&from=space{else}home.php?mod=space&uid=$space[uid]&view=thread{/if}" class="font" >{lang threads_num}&nbsp; $space[threads]</a></p>
+
+          <p><a href="{if CURMODULE != 'follow'}home.php?mod=space&uid=$space[uid]&do=thread&view=me&type=reply&from=space{else}home.php?mod=space&uid=$space[uid]&view=thread&type=reply{/if}" class="font" >{lang replay_num}&nbsp; $space[posts]</a></p>
+
+          <p>{lang friends_num}&nbsp; $space[friends]</p>
+
+          <p>{lang doings_num}&nbsp; $space[doings]</p>
+
+          <p>{lang blogs_num}&nbsp; $space[blogs]</p>
+
+          <p>{lang albums_num}&nbsp; $space[albums]</p>
+
+        </span></li>
+
+        
+
+        
+
+       <!--{loop $profiles $value}-->
+
+        <li><span class="z">$value[title]:</span><span class="y">$value[value]</span></li>
+
+         <!--{/loop}-->
+
+         <li><span class="z">{lang credits}:</span><span class="y">
+
+        <p>$space[credits]</p>
+
+        <!--{loop $_G[setting][extcredits] $key $value}-->
+
+			<!--{if $value[title]}-->
+
+			<p>$value[title]&nbsp; {$space["extcredits$key"]} $value[unit]</p>
+
+			<!--{/if}-->
+
+			<!--{/loop}-->
+
+        </span></li>
+
+      </ul>
+
+    </div>
+
+  </div>
+
+  <div class="userexp">
+
+    
+
+    <div class="user_box">
+
+      <ul>
+
+       <li><span class="z">{lang usergroup}:</span><span class="y">{$space[group][grouptitle]}{$space[group][icon]}</span></li>
+
+       <li><span class="z">{lang online_time}:</span><span class="y">$space[oltime] {lang hours}</span></li>
+
+       <li><span class="z">{lang regdate}:</span><span class="y">$space[regdate]</span></li>
+
+       <li><span class="z">{lang last_visit}:</span><span class="y">$space[lastvisit]</span></li>
+
+       <li><span class="z">{lang last_send_email}:</span><span class="y">$space[lastsendmail]</span></li>
+
+      </ul>
+
+    </div>
+
+  </div>
+
+  <!-- userinfo end --> 
+
+  
+
+
+
+<!--{else}-->
+
+<div class="wi_pt">
+
+	<div class="block_search"><a href="javascript:;" onclick="history.go(-1);" class="comback">{lang back}</a></div>
+	
+	<div class="block_logo"><a href="home.php?mod=space&uid={$_G[uid]}">我的</a></div>
+
+</div>
+
+<!-- userinfo start -->
+
+  <div class="userinfo">
+
+    <div class="tops cud">
+
+      <div class="user_avatar">
+
+        <div class="avatar_m cu"><span><img src="<!--{avatar($_G[uid], middle, true)}-->" /></span></div>
+
+        <p class="my_username">{$space[username]}</p>
+		
+		<!--{loop $_G[setting][extcredits] $key $value}-->
+
+		<!--{if $value[title]}-->
+
+		<p class="tjxinx">$value[title]：{$space["extcredits$key"]} $value[unit]</p>
+
+		<!--{/if}-->
+
+		<!--{/loop}-->
+		
+		<p class="tjxinx">等级：{$space[group][grouptitle]}{$space[group][icon]}</p>
+		
+      </div>
+
+    </div>
+	
+
+    <div class="user_box">
+
+      <ul class="ucenter_my">
+
+        <li class="tit_thread"><a href="home.php?mod=space&uid={$_G[uid]}&do=thread&view=me"><i class="zti cen_icon"></i>{lang mythread}<i class="ucenter_go"></i></a></li>
+		
+		<li class="tit_favorite"><a href="home.php?mod=space&uid={$_G[uid]}&do=favorite&view=me&type=thread"><i class="scang cen_icon"></i>{lang myfavorite}<i class="ucenter_go"></i></a></li>
+
+        <li class="tit_msg"><a href="home.php?mod=space&do=pm"><i class="xxi cen_icon"></i>{lang mypm}<i class="ucenter_go"></i></a><!--{if $_G[member][newpm]}--> New!<!--{/if}--></li>
+
+        <li class="tit_profile"><a href="home.php?mod=space&uid={$_G[uid]}"><i class="zliao cen_icon"></i>{lang myprofile}<i class="ucenter_go"></i></a></li>
+
+        <li class="tit_logout"><a href="member.php?mod=logging&action=logout&formhash={FORMHASH}"><i class="lout cen_icon"></i>{lang logout_mobile}<i class="ucenter_go"></i></a></li>
+
+      </ul>
+
+    </div>
+
+</div>
+
+
+
+<!-- userinfo end -->
+
+
+
+<!--{/if}-->
+
+<!--{template common/footer}-->
+

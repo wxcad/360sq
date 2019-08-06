@@ -1,0 +1,15 @@
+<!--{template common/header}-->
+
+
+<!--{if $is_portal == 1 && $_GET['mod'] != 'forum'}-->		
+	<!--{template xlplus/portal}-->		
+<!--{else}-->
+	<!--{template xlplus/forum}-->
+<!--{/if}-->
+
+<!--{hook/index_bottom_mobile}-->
+<!--{template common/footer}-->
+
+
+<!--{hook/index_top_mobile}-->
+<!--{hook/index_middle_mobile}-->

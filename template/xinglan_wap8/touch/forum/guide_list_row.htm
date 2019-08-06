@@ -1,0 +1,50 @@
+				<!--{if $list['threadcount']}-->
+
+					<ul class="hotlist">
+
+						<!--{loop $list['threadlist'] $key $thread}-->
+
+							<li>
+
+									<a href="forum.php?mod=viewthread&tid=$thread[tid]&fromguid=hot&{if $_GET['archiveid']}archiveid={$_GET['archiveid']}&{/if}extra=$extra">
+
+										<!--{if !$thread['forumstick'] && $thread['closed'] > 1 && ($thread['isgroup'] == 1 || $thread['fid'] != $_G['fid'])}-->
+
+												<!--{eval $thread[tid]=$thread[closed];}-->
+
+										<!--{/if}-->
+
+										$thread[typehtml] $thread[sorthtml]
+
+										$thread[subject]
+
+										<!--{if $thread['digest'] > 0}-->
+
+											<img src="{$xinglan}/image/ico_nice.gif" class="vm" />
+
+										<!--{elseif $thread['attachment'] == 2 && $_G['setting']['mobile']['mobilesimpletype'] == 0}-->
+
+											<img src="{$xinglan}/image/ico_img.gif" class="vm" />
+
+										<!--{/if}-->					
+
+										<span class="by">$thread[author]</span>
+
+										<span class="num"><!--{if $thread['isgroup'] != 1}-->$thread[replies]<!--{else}-->{$groupnames[$thread[tid]][replies]}<!--{/if}--></span>
+
+									</a>
+
+							</li>
+
+						<!--{/loop}-->
+
+					</ul>
+
+				<!--{else}-->
+
+					<p class="hm b_p">{lang guide_nothreads}</p>
+
+				<!--{/if}-->
+
+
+

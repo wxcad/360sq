@@ -1,0 +1,135 @@
+<!--{subtemplate common/header}-->
+
+
+
+<!-- header start -->
+
+<!--{template common/header_xinglan}-->
+
+<!-- header end -->
+
+
+
+<!--{eval $list = array();}-->
+
+<!--{eval $wheresql = category_get_wheresql($cat);}-->
+
+<!--{eval $list = category_get_list($cat, $wheresql, $page);}-->
+
+<script type="text/javascript">
+function show(){
+var iWidth = document.documentElement.clientWidth;
+var iHeight = document.documentElement.clientHeight;
+var bgObj = document.createElement("div");
+bgObj.setAttribute("id","bgbox");
+bgObj.style.width = iWidth+"px";
+bgObj.style.height =Math.max(document.body.clientHeight, iHeight)+"px";
+document.body.appendChild(bgObj);
+var oShow = document.getElementById('show2');
+oShow.style.display = 'block';
+oShow.style.right = 0+"px";
+oShow.style.top = 0+"px";
+function oClose(){
+oShow.style.display = 'none';
+document.body.removeChild(bgObj);
+}
+bgObj.onclick = oClose;
+}
+</script>
+
+<div class="wi_pt">
+
+	<ul class="block_user">
+		<li id="usermsg">
+		<a onclick="show(); return false" href="#" class="icon_userinfo"></a>
+		</li>
+	</ul>
+		
+	<div class="block_search"><a href="javascript:history.back();" class="comback">{lang back}</a></div>
+
+    <div class="block_logo"><h2><a href="{echo getportalcategoryurl($cat[catid])}">$cat[catname]</a></h2></div>
+
+</div>
+
+<!--{$nav_sub}-->	
+
+<div id="show2" class="wi_user cl" style="display:none;">
+	<!--{if $_G['uid']}-->
+	<div class="limn1"><img src="<!--{avatar($_G[uid], middle, true)}-->" /><a href="home.php?mod=space&uid={$_G[uid]}">$_G['username']</a></div>
+	<!--{else}-->
+	<div class="limn1"><img src="<!--{avatar(0, middle, true)}-->" />游客</div>
+	<!--{/if}-->
+	<div style="clear:both;"></div>
+	<ul>
+		    <li class="blli1"><a href="forum.php?mod=forum"><i></i>社区首页</a></li>
+			<li class="blli2"><a href="portal.php?mod=list&catid=1"><i></i>新闻资讯</a></li>
+			<li class="blli3"><a href="forum.php?mod=forumdisplay&fid=37"><i></i>美图天下</a></li>
+			<!--{if $_G['uid']}-->
+			<li class="blli4"><a onclick="showWindow('nav', this.href, 'get', 0)" href="forum.php?mod=misc&amp;action=nav"><i></i>发布主题</a></li>
+			<!--{else}-->
+			<li class="blli4"><a href="member.php?mod=logging&action=login"><i></i>发布主题</a></li>
+			<!--{/if}-->
+			<li class="blli5"><a href="<!--{if $_G[uid]}-->home.php?mod=space&uid=$_G[uid]&do=profile&mycenter=1<!--{else}-->member.php?mod=logging&action=login<!--{/if}-->" class="iocn4"><i></i>个人中心</a></li>
+			<!--{if $_G['uid']}-->
+			<li class="blli6" style="border-bottom:none;"><a href="member.php?mod=logging&action=logout&formhash={FORMHASH}"><i></i>{lang logout_mobile}</a></li>		
+			<!--{else}-->
+			<li class="blli6"><a href="member.php?mod=logging&action=login"><i></i>登录注册</a></li>
+			<!--{/if}-->
+		</ul>
+</div>
+
+
+<!--{if $cat[subs] || $cat[others]}-->
+
+<!--{if $cat[subs]}-->
+<div class="wi_fcat cl">
+
+	<span class="wisub">{lang sub_category}：</span>
+	 <ul class="pcat">          
+
+		<!--{loop $cat[subs] $value}-->
+
+		<li><a href="{echo getportalcategoryurl($value[catid]);}">$value[catname]</a></li>
+
+		<!--{/loop}-->
+
+	</ul>
+
+</div>
+<!--{/if}-->
+
+<!--{/if}-->
+
+<div id="index_list">
+
+<ul class="plist">
+
+<!--{loop $list['list'] $value}-->
+
+    <li class="cl">
+
+    <!--{if $value[pic]}-->
+
+    <a href="portal.php?mod=view&aid=$value[aid]"><img src="$value[pic]" alt="$value[title]" /></a>
+
+    <!--{/if}-->
+
+    <h3><a href="portal.php?mod=view&aid=$value[aid]">$value[title]</a>
+
+    <!--{if $value[status]==1 }--><span>({lang moderate_need})</span><!--{/if}--></h3>
+	
+	<div class="xinx"><!--{if $value[catname]}--><a class="bkname" href="{$portalcategory[$value['catid']]['caturl']}">$value[catname]</a><!--{/if}--><span class="fttime">$value[dateline]</span></div>
+    
+    </li>
+
+<!--{/loop}-->
+
+</ul>
+
+ {$list['multi']}
+
+</div>
+
+
+
+<!--{subtemplate common/footer}-->

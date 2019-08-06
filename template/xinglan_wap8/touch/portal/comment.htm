@@ -1,0 +1,83 @@
+<!--{subtemplate common/header}-->
+
+
+
+<!-- header start -->
+
+<!--{template common/header_xinglan}-->
+
+<!-- header end -->
+
+
+
+<div class="wi_pt">
+
+	<a href="$url" class="xi2">&laquo;{echo langm('tthread')}</a>
+
+	<span class="y">{echo langm('tt')}$csubject[commentnum]{echo langm('od')}{lang comment}</span>
+
+</div>
+
+
+
+<div id="alist">
+
+<!--{loop $commentlist $comment}-->
+
+	<!--{subtemplate portal/comment_li}-->
+
+<!--{/loop}-->
+
+</div>
+
+
+
+$multi
+
+  
+
+<!--{if $csubject['allowcomment'] == 1}-->   		  
+
+<div class="wi_comment_form"> 	
+
+	<form name="cform" action="portal.php?mod=portalcp&ac=comment&mobile=2" method="post" autocomplete="off">
+
+		<div class="wi_texta mtn">
+
+			<textarea name="message" cols="60" rows="3" id="message"></textarea>
+
+		</div>
+
+		<!--{if checkperm('seccode') && ($secqaacheck || $seccodecheck)}-->
+
+		<!--{subtemplate common/seccheck}-->
+
+		<!--{/if}-->
+
+		<!--{if $idtype == 'topicid' }-->
+
+			<input type="hidden" name="topicid" value="$id" />
+
+		<!--{else}-->
+
+			<input type="hidden" name="aid" value="$id" />
+
+		<!--{/if}-->
+
+		<input type="hidden" name="formhash" value="{FORMHASH}" />
+
+		<div class="inbox"><button type="submit" name="commentsubmit" value="true" class="btn_pn btn_pn_blue">{lang comment}</button></div>
+
+	</form>	
+
+</div>
+
+
+
+<!--{/if}-->     
+
+
+
+
+
+<!--{subtemplate common/footer}-->

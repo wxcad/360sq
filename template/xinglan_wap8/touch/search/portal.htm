@@ -1,0 +1,107 @@
+<!--{template common/header}-->
+<!-- header start -->
+<!--{template common/header_xinglan}-->
+
+<div class="wi_pt">
+	<a href="forum.php">{echo langm('home')}</a> <em> &gt; </em> {lang search}
+</div>
+<div class="wztz"> <a href="search.php?mod=forum" >{echo langm('mthread')}</a> <a href="search.php?mod=portal" class="wenz" >{echo langm('arc')}</a> </div>
+<!-- header end -->
+
+<div class="search_hot{if $keyword} bb{/if}">
+<strong>{lang hot_search}: </strong>                        
+<!--{if $_G['setting']['srchhotkeywords']}-->
+	<!--{loop $_G['setting']['srchhotkeywords'] $val}-->
+		<!--{if $val=trim($val)}-->
+			<!--{eval $valenc=rawurlencode($val);}-->
+			<!--{block srchhotkeywords[]}-->
+				<!--{if !empty($searchparams[url])}-->
+					<a href="$searchparams[url]?q=$valenc&source=hotsearch{$srchotquery}" target="_blank" sc="1">$val</a>
+				<!--{else}-->
+					<a href="search.php?mod=forum&srchtxt=$valenc&formhash={FORMHASH}&searchsubmit=true&source=hotsearch" target="_blank" sc="1">$val</a>
+				<!--{/if}-->
+			<!--{/block}-->
+		<!--{/if}-->
+	<!--{/loop}-->
+	<!--{echo implode('', $srchhotkeywords);}--> 
+    <!--{else}--> 
+    {echo m_lang('nosearch')}                           
+<!--{/if}-->
+</div>
+
+<div class="search">
+      <form id="mod_portal" method="post" action="search.php">
+        <input type="hidden" id="mod_portal" name="mod" value="portal" checked="checked" />
+        <input type="hidden" value="yes" name="searchsubmit">
+		<table width="100%" cellspacing="0" cellpadding="0">
+			<tbody>
+				<tr>
+					<td>						
+                        <input id="scform_srchtxt" type="text" name="srchtxt" value="" autocomplete="off" class="input" placeholder="搜索文章">
+					</td>
+					<td width="84" align="center" class="scbar_btn_td">
+						<div><input id="scform_submit" type="submit" name="btnG" value="{lang search}" class="button2" ></div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+        </form>
+</div>
+  
+  <div class="threadlist">
+  <!--{if $keyword}-->  
+  <h2 class="thread_tit">{lang search_result_keyword}</h2>
+  <!--{/if}--> 
+  
+  <!--{if !empty($searchid) && submitcheck('searchsubmit', 1)}-->
+  <ul id="alist"> 
+    <!--{if empty($articlelist)}-->
+    <li class="YGGufsdeK0"><a href="javascript:;">{lang search_nomatch}</a></li>
+    <!--{else}--> 
+    <!--{loop $articlelist $article}-->
+    <li class="YGGufsdeK0"><a href="portal.php?mod=view&aid=$article[aid]">$article[title]</a></li>
+    <!--{/loop}--> 
+    <!--{/if}--> 
+  </ul>  
+  <!--{/if}-->
+  </div>
+  
+<!--{if $wappages == 1}--> 
+<!--{if $index['num'] > $_G['tpp']}-->
+<div id="ajaxshow"></div> 
+<div class="LnwvSqnUkk" id="a_pg"> 
+<div id="ajaxld"><img src="template/xinglan_wap_tan01/img/load.gif" /> {echo langm('load_pic')}</div>
+<div id="ajnt"><a href="search.php?mod=portal&searchid={$searchid}&orderby={$orderby}&ascdesc={$ascdesc}&searchsubmit=yes" onclick="return ajaxpage(this.href);">{echo langm('load')}</a></div>
+</div> 
+     
+<script type="text/javascript">
+var pages=$_G['page'];
+var allpage={echo $thispage = ceil($index['num'] / $_G['tpp']);};
+function ajaxpage(url){
+						jq("ajaxld").style.display='block';
+						jq("ajnt").style.display='none';
+						var x = new Ajax("HTML");
+						pages++;
+						url=url+'&page='+pages;
+						x.get(url, function (s) {
+							s = s.replace(/\\n|\\r/g, "");//alert(s);
+							s = s.substring(s.indexOf("<ul id=\"alist\""), s.indexOf("<div id=\"ajaxshow\"></div>"));//alert(s);
+							jq('ajaxshow').innerHTML+=s;
+							jq("ajaxld").style.display='none';
+						if(pages==allpage){							
+							jq("a_pg").style.display='none';
+						}else{
+							jq("ajnt").style.display='block';
+						}
+						});
+						return false;
+}
+</script>
+<!--{/if}-->
+<!--{else}-->
+<!--{if $multipage}--><div class="aVNTAF7HEu">$multipage</div><!--{/if}-->
+<!--{/if}-->  
+
+</div>
+
+<!--{subtemplate common/footer}-->

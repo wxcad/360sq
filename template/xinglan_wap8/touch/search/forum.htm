@@ -1,0 +1,56 @@
+<!--{template common/header}-->
+<!-- header start -->
+<!--{template common/header_xinglan}-->
+<!-- header end -->
+<div class="wi_pt">
+	<div class="block_search"><a href="javascript:history.back();" class="comback">{lang search}</a></div>
+</div>
+
+
+<div class="search_hot{if $keyword} bb{/if}">
+<strong>{lang hot_search}：</strong>                        
+<!--{if $_G['setting']['srchhotkeywords']}-->
+	<!--{loop $_G['setting']['srchhotkeywords'] $val}-->
+		<!--{if $val=trim($val)}-->
+			<!--{eval $valenc=rawurlencode($val);}-->
+			<!--{block srchhotkeywords[]}-->
+				<!--{if !empty($searchparams[url])}-->
+					<a href="$searchparams[url]?q=$valenc&source=hotsearch{$srchotquery}" target="_blank" sc="1">$val</a>
+				<!--{else}-->
+					<a href="search.php?mod=forum&srchtxt=$valenc&formhash={FORMHASH}&searchsubmit=true&source=hotsearch" target="_blank" sc="1">$val</a>
+				<!--{/if}-->
+			<!--{/block}-->
+		<!--{/if}-->
+	<!--{/loop}-->
+	<!--{echo implode('', $srchhotkeywords);}--> 
+    <!--{else}--> 
+    {echo m_lang('nosearch')}                           
+<!--{/if}-->
+</div>
+
+<form id="searchform" class="searchform" method="post" autocomplete="off" action="search.php?mod=forum&mobile=2">
+	<input type="hidden" name="formhash" value="{FORMHASH}" />
+
+	<!--{subtemplate search/pubsearch}-->
+
+	<!--{eval $policymsgs = $p = '';}-->
+	<!--{loop $_G['setting']['creditspolicy']['search'] $id $policy}-->
+	<!--{block policymsg}--><!--{if $_G['setting']['extcredits'][$id][img]}-->$_G['setting']['extcredits'][$id][img] <!--{/if}-->$_G['setting']['extcredits'][$id][title] $policy $_G['setting']['extcredits'][$id][unit]<!--{/block}-->
+	<!--{eval $policymsgs .= $p.$policymsg;$p = ', ';}-->
+	<!--{/loop}-->
+	<!--{if $policymsgs}--><p>{lang search_credit_msg}</p><!--{/if}-->
+</form>
+
+<!--{if CURMODULE == 'forum'}-->
+	<div class="wi_s_time">		
+		<a href="search.php?mod=forum&srchfrom=14400&searchsubmit=yes">{echo langm('4hr')}</a>		
+		<a href="search.php?mod=forum&srchfrom=86400&searchsubmit=yes">{echo langm('24hr')}</a>
+		<a href="search.php?mod=forum&srchfrom=604800&searchsubmit=yes">{echo langm('168hr')}</a>
+		<a href="search.php?mod=forum&srchfrom=2592000&searchsubmit=yes">{echo langm('720hr')}</a>
+	</div>
+<!--{/if}-->
+
+<!--{if !empty($searchid) && submitcheck('searchsubmit', 1)}-->
+	<!--{subtemplate search/thread_list}-->
+<!--{/if}-->
+<!--{template common/footer}-->
