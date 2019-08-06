@@ -131,3 +131,11 @@
 <?PHP exit;?>	1565105340	admin	1	61.160.112.70	portalcategory	GET={operation=add; }; POST={};
 <?PHP exit;?>	1565105346	admin	1	61.160.112.70	portalcategory	GET={operation=add; catname=频道2; perpage=15; maxpages=1000; signs={list={ea095576c0694ace=1; 2d513a86e9cc2775=1; d6671b5624fbd08c=1; d066be2ca93a728e=1; e122debdcf9da80e=1; }; view={e0a4593ea4984071=1; }; }; listprimaltplname=./template/default:portal/list; allowpublish=1; notshowarticlesummay=1; detailsubmit=提交; }; POST={catname=频道2; perpage=15; maxpages=1000; signs={list={ea095576c0694ace=1; 2d513a86e9cc2775=1; d6671b5624fbd08c=1; d066be2ca93a728e=1; e122debdcf9da80e=1; }; view={e0a4593ea4984071=1; }; }; listprimaltplname=./template/default:portal/list; allowpublish=1; notshowarticlesummay=1; detailsubmit=提交; };
 <?PHP exit;?>	1565105350	admin	1	61.160.112.70	portalcategory	GET={}; POST={};
+<?PHP exit;?>	1565106976	admin	1	61.160.112.70	setting	GET={operation=basic; }; POST={};
+<?PHP exit;?>	1565106980	admin	1	61.160.112.70	setting	GET={operation=access; }; POST={};
+<?PHP exit;?>	1565106981	admin	1	61.160.112.70	setting	GET={operation=functions; }; POST={};
+<?PHP exit;?>	1565106983	admin	1	61.160.112.70	setting	GET={operation=basic; }; POST={};
+<?PHP exit;?>	1565106987	admin	1	61.160.112.70	nav	GET={}; POST={};
+<?PHP exit;?>	1565106988	admin	1	61.160.112.70	moderate	GET={}; POST={};
+<?PHP exit;?>	1565106990	admin	1	61.160.112.70	portalcategory	GET={}; POST={};
+<?PHP exit;?>	1565106991	admin	1	61.160.112.70	group	GET={operation=setting; }; POST={};
